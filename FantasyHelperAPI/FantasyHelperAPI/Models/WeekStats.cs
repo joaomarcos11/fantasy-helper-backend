@@ -4,7 +4,7 @@ namespace FantasyHelperAPI.Models
 {
     public class WeekStats
     {
-        public short IdStats { get; set; }
+        public short IdWeekStats { get; set; }
         public byte WeekNumber { get; set; }
         public byte Games { get; set; }
         public short Fga { get; set; }
