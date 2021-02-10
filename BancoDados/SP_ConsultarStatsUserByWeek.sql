@@ -4,17 +4,19 @@ GO
 
 CREATE PROCEDURE [dbo].[SP_ConsultarStatsUserByWeek]
 	@IdUser SMALLINT,
+	@Season VARCHAR(11),
 	@WeekNumber TINYINT
 	
 AS
 	/* 
 	Documenta��o
 	M�dulo............: User, WeekStats
-	Objetivo..........: Consultar todos os stats de um usuário de acordo número da semana
-	EX................: EXEC [dbo].[SP_ConsultarStatsUserByWeek] 2, 4
+	Objetivo..........: Consultar todos os stats de um usuário de acordo a season e o número da semana
+	EX................: EXEC [dbo].[SP_ConsultarStatsUserByWeek] 2, '2020-2021', 4
 	*/
 	BEGIN
 		SELECT 
+			w.Season,
 			w.WeekNumber,
 			w.Games,
 			w.Fgm,
@@ -34,6 +36,7 @@ AS
 			INNER JOIN [dbo].[FantasyUser] AS u
 				ON u.IdUser = w.IdUser
 			WHERE u.IdUser = @IdUser 
+				AND Season = @Season
 				AND WeekNumber = @WeekNumber
 
 	END

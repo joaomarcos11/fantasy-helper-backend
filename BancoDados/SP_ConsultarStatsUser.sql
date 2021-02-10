@@ -14,6 +14,7 @@ AS
 	*/
 	BEGIN
 		SELECT 
+			w.Season,
 			w.WeekNumber,
 			w.Games,
 			w.Fgm,
