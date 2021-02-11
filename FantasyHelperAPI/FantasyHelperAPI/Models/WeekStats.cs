@@ -5,6 +5,7 @@ namespace FantasyHelperAPI.Models
     public class WeekStats
     {
         public short IdWeekStats { get; set; }
+        public string Season { get; set; }
         public byte WeekNumber { get; set; }
         public byte Games { get; set; }
         public short Fga { get; set; }
@@ -22,5 +23,7 @@ namespace FantasyHelperAPI.Models
         public bool IsActive { get; set; }
         public short IdUser { get; set; }
         public User User { get; set; }
+
+        // criar construtor que instancie um User
     }
 }

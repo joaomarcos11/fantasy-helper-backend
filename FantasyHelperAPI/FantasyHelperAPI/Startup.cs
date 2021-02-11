@@ -1,3 +1,6 @@
+using FantasyHelperAPI.Data;
+using FantasyHelperAPI.Data.Interfaces;
+using FantasyHelperAPI.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,12 +28,22 @@ namespace FantasyHelperAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IWeekStatsRepository, WeekStatsRepository>();
+
+            services.AddScoped<Connection, Connection>();
+
+//             services.AddSingleton<EmailSettings>(
+//                 Configuration.GetSection("EmailSettings")
+//                     .Get<EmailSettings>(options => options.BindNonPublicProperties = true)
+//             );
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FantasyHelperAPI", Version = "v1" });
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
